@@ -12,7 +12,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $table = customer::all();
+        return view('customer.index',compact('table'));
     }
 
     /**

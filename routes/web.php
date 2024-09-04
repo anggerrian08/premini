@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\StokController;
+use App\Http\Controllers\SupplayerController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +28,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('customer',CustomerController::class);
+Route::resource('karyawan',KaryawanController::class);
+Route::resource('kategori',KategoriController::class);
+Route::resource('order',OrderController::class);
+Route::resource('produk',ProdukController::class);
+Route::resource('stok',StokController::class);
+Route::resource('supplayer',SupplayerController::class);
