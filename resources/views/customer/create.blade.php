@@ -8,15 +8,17 @@
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Nama</label>
-            <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', '') }}" required autocomplete="off">
         </div>
+
+
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" value="{{ old('email') }}" required>
+            <input type="email" name="email" class="form-control" value="{{ old('email') }}" required autocomplete="off">
         </div>
         <div class="mb-3">
             <label for="phone" class="form-label">Telepon</label>
-            <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" required>
+            <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" required autocomplete="off">
         </div>
         <div class="mb-3">
             <label for="address" class="form-label">Alamat</label>

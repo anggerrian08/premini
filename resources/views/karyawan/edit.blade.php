@@ -22,8 +22,15 @@
         </div>
         <div class="mb-3">
             <label for="position" class="form-label">Jabatan</label>
-            <input type="text" name="position" class="form-control" value="{{ $karyawan->position }}" required>
+            <select name="position" id="position" class="form-control" required>
+                <option value="" disabled selected>Pilih Jabatan</option>
+                <option value="Manager" {{ old('position') == 'Manager' ? 'selected' : '' }}>Manager</option>
+                <option value="Supervisor" {{ old('position') == 'Supervisor' ? 'selected' : '' }}>Supervisor</option>
+                <option value="Staff" {{ old('position') == 'Staff' ? 'selected' : '' }}>Staff</option>
+                <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
+            </select>
         </div>
+
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
