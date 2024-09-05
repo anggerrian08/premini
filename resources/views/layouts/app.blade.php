@@ -19,12 +19,14 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
+
+
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-blue shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-secondary shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Coffeeshop
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -32,12 +34,39 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                @auth
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}">{{ __('Beranda') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/customer') }}">{{ __('Kustomer') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/karyawan') }}">{{ __('Karyawan') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/kategori') }}">{{ __('Kategori produk') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/supplayer') }}">{{ __('Supplayer') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/produk') }}">{{ __('Menu') }}</a>
+                            </li>
 
-                    </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/stok') }}">{{ __('Stok') }}</a>
+                            </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/order') }}">{{ __('Order') }}</a>
+                            </li>
+                        </ul>
+
+                    @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -77,6 +106,7 @@
                 </div>
             </div>
         </nav>
+
 
         <main class="py-4">
             @yield('content')

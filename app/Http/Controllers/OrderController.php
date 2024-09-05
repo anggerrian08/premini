@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\order;
+use App\Models\Order;
+use App\Models\Customer;
+use App\Models\Karyawan;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -12,7 +15,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        // Mendapatkan semua order
+        $orders = Order::with(['customer', 'karyawan'])->get();
+        return view('order.index', compact('orders'));
     }
 
     /**
@@ -20,7 +25,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        // Mendapatkan data pelanggan, karyawan, dan produk
+        $customers = Customer::all();
+        $karyawans = Karyawan::all();
+        $produks = Produk::all();
+        return view('order.create', compact('customers', 'karyawans', 'produks'));
     }
 
     /**
@@ -28,38 +37,84 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'customer_id' => 'required|exists:customers,id',
+            'karyawan_id' => 'required|exists:karyawans,id',
+            'produk_ids' => 'required|array',
+            'produk_ids.*' => 'exists:produks,id',
+            'total_price' => 'required|numeric',
+            'status' => 'required|string',
+        ]);
+
+        // Membuat order baru
+        $order = Order::create($request->only(['customer_id', 'karyawan_id', 'total_price', 'status']));
+
+        // Menyimpan produk yang dipilih ke dalam tabel pivot 'order_items'
+        $order->produk()->attach($request->produk_ids);
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('order.index')->with('success', 'Order berhasil ditambahkan.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(order $order)
+    public function show(Order $order)
     {
-        //
+        // Menampilkan detail order dengan relasi ke customer, karyawan, dan produk
+        $order->load('customer', 'karyawan', 'produk');
+        return view('orders.show', compact('order'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(order $order)
+    public function edit(Order $order)
     {
-        //
+        // Mendapatkan data pelanggan, karyawan, dan produk untuk form edit
+        $customers = Customer::all();
+        $karyawans = Karyawan::all();
+        $produks = Produk::all();
+
+        // Menampilkan form edit order
+        return view('order.edit', compact('order', 'customers', 'karyawans', 'produks'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, order $order)
+    public function update(Request $request, Order $order)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'customer_id' => 'required|exists:customers,id',
+            'karyawan_id' => 'required|exists:karyawans,id',
+            'produk_ids' => 'required|array',
+            'produk_ids.*' => 'exists:produks,id',
+            'total_price' => 'required|numeric',
+            'status' => 'required|string',
+        ]);
+
+        // Update order
+        $order->update($request->only(['customer_id', 'karyawan_id', 'total_price', 'status']));
+
+        // Update produk di tabel pivot 'order_items'
+        $order->produk()->sync($request->produk_ids);
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('order.index')->with('success', 'Order berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(order $order)
+    public function destroy(Order $order)
     {
-        //
+        // Hapus order
+        $order->delete();
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('order.index')->with('success', 'Order berhasil dihapus.');
     }
 }

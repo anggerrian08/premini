@@ -2,65 +2,94 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\customer;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the customers.
      */
     public function index()
     {
-        $table = customer::all();
-        return view('customer.index',compact('table'));
+        // Mendapatkan semua data customer
+        $customers = Customer::all();
+        return view('customer.index', compact('customers'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new customer.
      */
     public function create()
     {
-        //
+        return view('customer.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created customer in storage.
      */
     public function store(Request $request)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:customers,email',
+            'phone' => 'required|string|max:20',
+            'address' => 'nullable|string',
+        ]);
+
+        // Membuat customer baru
+        Customer::create($request->all());
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('customer.index')->with('success', 'Customer berhasil ditambahkan.');
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified customer.
      */
-    public function show(customer $customer)
+    public function show(Customer $customer)
     {
-        //
+        return view('customer.show', compact('customer'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified customer.
      */
-    public function edit(customer $customer)
+    public function edit(Customer $customer)
     {
-        //
+        return view('customer.edit', compact('customer'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified customer in storage.
      */
-    public function update(Request $request, customer $customer)
+    public function update(Request $request, Customer $customer)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:customers,email,' . $customer->id,
+            'phone' => 'required|string|max:20',
+            'address' => 'nullable|string',
+        ]);
+
+        // Update customer
+        $customer->update($request->all());
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('customer.index')->with('success', 'Customer berhasil diperbarui.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified customer from storage.
      */
-    public function destroy(customer $customer)
+    public function destroy(Customer $customer)
     {
-        //
+        // Hapus customer
+        $customer->delete();
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('customer.index')->with('success', 'Customer berhasil dihapus.');
     }
 }

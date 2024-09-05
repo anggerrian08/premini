@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
-            $table->unsignedBigInteger('kategoris_id');
-            $table->foreign('kategoris_id')->references('id')->on('kategoris');
-            $table->unsignedBigInteger('supplayers_id');
-            $table->foreign('supplayers_id')->references('id')->on('supplayers');
+            $table->unsignedBigInteger('kategori_id');
+            $table->foreign('kategori_id')->references('id')->on('kategoris');
+            $table->unsignedBigInteger('supplayer_id');
+            $table->foreign('supplayer_id')->references('id')->on('supplayers');
             $table->timestamps();
         });
     }

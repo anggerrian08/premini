@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\karyawan;
+use App\Models\Karyawan;
 use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
@@ -12,7 +12,9 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        //
+        // Mendapatkan semua data karyawan
+        $karyawans = Karyawan::all();
+        return view('karyawan.index', compact('karyawans'));
     }
 
     /**
@@ -20,7 +22,7 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        //
+        return view('karyawan.create');
     }
 
     /**
@@ -28,38 +30,66 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:karyawans,email',
+            'phone' => 'nullable|string|max:20',
+            'position' => 'required|string|max:255',
+        ]);
+
+        // Membuat karyawan baru
+        Karyawan::create($request->all());
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil ditambahkan.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(karyawan $karyawan)
+    public function show(Karyawan $karyawan)
     {
-        //
+        return view('karyawan.show', compact('karyawan'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(karyawan $karyawan)
+    public function edit(Karyawan $karyawan)
     {
-        //
+        return view('karyawan.edit', compact('karyawan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, karyawan $karyawan)
+    public function update(Request $request, Karyawan $karyawan)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:karyawans,email,' . $karyawan->id,
+            'phone' => 'nullable|string|max:20',
+            'position' => 'required|string|max:255',
+        ]);
+
+        // Update data karyawan
+        $karyawan->update($request->all());
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(karyawan $karyawan)
+    public function destroy(Karyawan $karyawan)
     {
-        //
+        // Hapus data karyawan
+        $karyawan->delete();
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil dihapus.');
     }
 }
