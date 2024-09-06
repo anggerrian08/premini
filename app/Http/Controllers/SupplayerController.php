@@ -37,7 +37,7 @@ class SupplayerController extends Controller
             'email' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'address' => 'nullable|string',
-        ],[
+        ], [
             'name.required' => 'nama tidak boleh kosong',
 
             'email.required' => 'kontak tidak boleh kosong',

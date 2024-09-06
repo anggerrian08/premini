@@ -37,7 +37,7 @@ class StokController extends Controller
         $request->validate([
             'produk_id' => 'required|exists:produks,id',
             'quantity' => 'required|integer|min:0',
-        ],[
+        ], [
             'produk_id.required' => 'produk tidak boleh kosong',
 
             'quantity.required' => 'quantitas tidak boleh kosong',

@@ -12,10 +12,29 @@ class ProdukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $search = $request->input('search');
+
+        // Query produk dengan kondisi pencarian
+        $produks = Produk::query()
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%")
+                    ->orWhere('price', 'like', "%{$search}%")
+                    ->orWhereHas('kategori', function ($query) use ($search) {
+                        $query->where('name', 'like', "%{$search}%");
+                    })
+                    ->orWhereHas('supplayer', function ($query) use ($search) {
+                        $query->where('name', 'like', "%{$search}%");
+                    });
+            })
+            ->with(['kategori', 'supplayer']) // eager load kategori dan supplayer
+            ->paginate(10);
+
         // Mendapatkan semua produk dengan relasi ke kategori dan supplier
-        $produks = Produk::with(['kategori', 'supplayer'])->get();
+        // $produks = Produk::with(['kategori', 'supplayer'])->get();
         return view('produks.index', compact('produks'));
     }
 
