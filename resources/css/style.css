@@ -1,0 +1,57 @@
+/* Sidebar Styles */
+.sidebar {
+    background: #f8f9fa;
+    padding: 20px;
+    height: 100vh; /* Full height sidebar */
+    border-right: 1px solid #dee2e6;
+    position: fixed; /* Fixed sidebar */
+    top: 0;
+    bottom: 0;
+}
+
+.sidebar h4 {
+    margin-bottom: 20px;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.sidebar .nav-link:hover {
+    color: #007bff;
+}
+
+.sidebar-table {
+    margin-top: 20px;
+}
+
+.sidebar-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sidebar-table table th,
+.sidebar-table table td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+}
+
+.sidebar-table table th {
+    background: #e9ecef;
+}
+
+/* Main Content Adjustments */
+.main-content {
+    margin-left: 25%; /* Adjust based on the sidebar width */
+}
+
+.container-fluid {
+    display: flex;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+}
