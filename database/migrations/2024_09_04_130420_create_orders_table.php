@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->foreignId('karyawan_id')->constrained()->onDelete('cascade');
             $table->decimal('total_price', 8, 2);
-            $table->string('status');
             $table->timestamps();
         });
     }

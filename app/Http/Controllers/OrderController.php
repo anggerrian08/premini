@@ -41,10 +41,18 @@ class OrderController extends Controller
         $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'karyawan_id' => 'required|exists:karyawans,id',
-            'produk_ids' => 'required|array',
-            'produk_ids.*' => 'exists:produks,id',
+            'produk_id' => 'required|',
+            'produk_ids.*' => 'required|exists:produks,id',
             'total_price' => 'required|numeric',
-            'status' => 'required|string',
+        ],[
+            'customer_id.required' => 'customer tidak boleh kosong',
+
+            'karyawan_id.required' => 'karyawan tidak boleh kosong',
+
+            'produk_ids.required' => 'produk tidak boleh kosong',
+
+            'total_price.required' => 'harga tidak boleh kosong',
+
         ]);
 
         // Membuat order baru
@@ -63,8 +71,10 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         // Menampilkan detail order dengan relasi ke customer, karyawan, dan produk
-        $order->load('customer', 'karyawan', 'produk');
-        return view('orders.show', compact('order'));
+        $customers = Customer::all();
+        $karyawans = Karyawan::all();
+        $produks = Produk::all();
+        return view('order.show', compact('order','customers', 'karyawans', 'produks'));
     }
 
     /**
@@ -78,33 +88,33 @@ class OrderController extends Controller
         $produks = Produk::all();
 
         // Menampilkan form edit order
-        return view('order.edit', compact('order', 'customers', 'karyawans', 'produks'));
+        return view('order.edit', compact( 'order','customers', 'karyawans', 'produks'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Order $order)
-    {
-        // Validasi input
-        $request->validate([
-            'customer_id' => 'required|exists:customers,id',
-            'karyawan_id' => 'required|exists:karyawans,id',
-            'produk_ids' => 'required|array',
-            'produk_ids.*' => 'exists:produks,id',
-            'total_price' => 'required|numeric',
-            'status' => 'required|string',
-        ]);
+{
 
-        // Update order
-        $order->update($request->only(['customer_id', 'karyawan_id', 'total_price', 'status']));
+    // Validasi input
+    $request->validate([
+        'customer_id' => 'required|exists:customers,id',
+        'karyawan_id' => 'required|exists:karyawans,id',
+        'total_price' => 'required|numeric',
 
-        // Update produk di tabel pivot 'order_items'
-        $order->produk()->sync($request->produk_ids);
+        // Tambahkan 'status' jika Anda menyertakan kolom status
+        // 'status' => 'required|string|max:255',
+    ]);
 
-        // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('order.index')->with('success', 'Order berhasil diperbarui.');
-    }
+
+    // Update order
+    $order->update($request->only(['customer_id', 'karyawan_id', 'total_price']));
+
+
+    // Redirect ke halaman index dengan pesan sukses
+    return redirect()->route('order.index')->with('success', 'Order berhasil diperbarui.');
+}
 
     /**
      * Remove the specified resource from storage.

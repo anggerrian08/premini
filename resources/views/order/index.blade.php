@@ -19,7 +19,6 @@
                 <th>Customer</th>
                 <th>Karyawan</th>
                 <th>Total Harga</th>
-                <th>Status</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -29,12 +28,11 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $order->customer->name }}</td>
                     <td>{{ $order->karyawan->name }}</td>
-                    <td>{{ $order->total_price }}</td>
-                    <td>{{ $order->status }}</td>
+                    <td>{{ number_format($order->total_price, 2, ',', '.') }}</td>
                     <td>
-                        <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info">Detail</a>
-                        <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('order.show', $order->id) }}" class="btn btn-info">Detail</a>
+                        <a href="{{ route('order.edit', $order->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('order.destroy', $order->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>

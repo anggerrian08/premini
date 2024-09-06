@@ -49,6 +49,11 @@ class ProdukController extends Controller
 
             'price.required' => 'price tidak boleh kosong',
 
+            'kategori_id.required' => 'kategori tidak boleh kosong',
+
+            'supplayer_id.required' => 'supplayer tidak boleh kosong',
+
+
         ]);
 
         // Membuat produk baru dengan hanya data yang dibutuhkan

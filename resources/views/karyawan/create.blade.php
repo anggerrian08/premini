@@ -9,7 +9,7 @@
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Nama</label>
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" >
             @error('name')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -18,7 +18,7 @@
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
+            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" >
             @error('email')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -36,7 +36,7 @@
         </div>
         <div class="mb-3">
             <label for="position" class="form-label">Jabatan</label>
-            <select name="position" id="position" class="form-control @error('position') is-invalid @enderror" required>
+            <select name="position" id="position" class="form-control @error('position') is-invalid @enderror" >
                 <option value="" disabled {{ old('position') ? '' : 'selected' }}>Pilih Jabatan</option>
                 <option value="Manager" {{ old('position') == 'Manager' ? 'selected' : '' }}>Manager</option>
                 <option value="Supervisor" {{ old('position') == 'Supervisor' ? 'selected' : '' }}>Supervisor</option>

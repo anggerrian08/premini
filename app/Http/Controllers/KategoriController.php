@@ -34,7 +34,13 @@ class KategoriController extends Controller
         // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
+        ],[
+            'name.required' => 'nama tidak boleh kosong',
+
+            'description.required' => 'deskripsi tidak boleh kosong',
+
+
         ]);
 
         // Menyimpan kategori baru

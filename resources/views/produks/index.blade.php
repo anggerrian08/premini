@@ -16,7 +16,7 @@
                 <th>Deskripsi</th>
                 <th>Harga</th>
                 <th>Kategori</th>
-                <th>Supplier</th>
+                <th>Supplayer</th>
                 <th>Aksi</th>
             </tr>
         </thead>
