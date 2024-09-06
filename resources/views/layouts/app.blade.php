@@ -42,7 +42,7 @@
                                 <a class="nav-link" href="{{ url('/deskripsi') }}">{{ __('Tentang Kami') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/customer') }}">{{ __('Kustomer') }}</a>
+                                <a class="nav-link" href="{{ url('/customer') }}">{{ __('Pelanggan') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/karyawan') }}">{{ __('Karyawan') }}</a>
