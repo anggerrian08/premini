@@ -9,7 +9,7 @@ class Supplayer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'contact_person', 'phone', 'address'];
+    protected $fillable = ['name', 'email', 'phone', 'address'];
 
     public function produk()
     {

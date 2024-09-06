@@ -11,7 +11,7 @@ class CreateSupplayersTable extends Migration
         Schema::create('supplayers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('contact_person');
+            $table->string('email');
             $table->string('phone');
             $table->text('address')->nullable();
             $table->timestamps();

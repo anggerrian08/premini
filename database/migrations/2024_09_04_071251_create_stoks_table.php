@@ -15,8 +15,8 @@ class CreateStoksTable extends Migration
     {
         Schema::create('stoks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->unsignedBigInteger('produk_id');
+            $table->string('quantity');
             $table->timestamps();
         });
     }

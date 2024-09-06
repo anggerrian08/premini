@@ -12,8 +12,8 @@
             <input type="text" class="form-control" id="name" name="name" value="{{ $supplayer->name }}" required>
         </div>
         <div class="mb-3">
-            <label for="contact_person" class="form-label">Kontak Person</label>
-            <input type="text" class="form-control" id="contact_person" name="contact_person" value="{{ $supplayer->contact_person }}" required>
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" name="email" value="{{ $supplayer->contact_person }}" required>
         </div>
         <div class="mb-3">
             <label for="phone" class="form-label">Telepon</label>

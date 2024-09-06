@@ -10,8 +10,8 @@
             <td>{{ $supplayer->name }}</td>
         </tr>
         <tr>
-            <th>Kontak Person</th>
-            <td>{{ $supplayer->contact_person }}</td>
+            <th>Email</th>
+            <td>{{ $supplayer->email }}</td>
         </tr>
         <tr>
             <th>Telepon</th>

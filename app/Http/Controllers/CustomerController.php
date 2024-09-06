@@ -35,7 +35,17 @@ class CustomerController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:customers,email',
             'phone' => 'required|string|max:20',
-            'address' => 'nullable|string',
+            'address' => 'required|nullable|string',
+        ],[
+            'name.required' => 'nama tidak boleh kosong',
+
+            'email.required' => 'email tidak boleh kosong',
+
+            'phone.required' => 'nomer telepon tidak boleh kosong',
+
+            'address.required' => 'alamat tidak boleh kosong',
+
+
         ]);
 
         // Membuat customer baru
@@ -72,6 +82,16 @@ class CustomerController extends Controller
             'email' => 'required|email|unique:customers,email,' . $customer->id,
             'phone' => 'required|string|max:20',
             'address' => 'nullable|string',
+        ],[
+            'name.required' => 'nama tidak boleh kosong',
+
+            'email.required' => 'email tidak boleh kosong',
+
+            'phone.required' => 'nomer telepon tidak boleh kosong',
+
+            'address.required' => 'alamat tidak boleh kosong',
+
+
         ]);
 
         // Update customer

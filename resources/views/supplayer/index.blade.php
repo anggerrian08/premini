@@ -13,7 +13,7 @@
         <thead>
             <tr>
                 <th>Nama</th>
-                <th>Kontak</th>
+                <th>Email</th>
                 <th>Telepon</th>
                 <th>Alamat</th>
                 <th>Aksi</th>
@@ -23,7 +23,7 @@
             @foreach($supplayers as $supplayer)
             <tr>
                 <td>{{ $supplayer->name }}</td>
-                <td>{{ $supplayer->contact_person }}</td>
+                <td>{{ $supplayer->email }}</td>
                 <td>{{ $supplayer->phone }}</td>
                 <td>{{ $supplayer->address }}</td>
                 <td>

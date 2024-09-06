@@ -34,9 +34,15 @@ class SupplayerController extends Controller
         // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
-            'contact_person' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'address' => 'nullable|string',
+        ],[
+            'name.required' => 'nama tidak boleh kosong',
+
+            'email.required' => 'kontak tidak boleh kosong',
+
+            'telepon.required' => 'telepon tidak boleh kosong',
         ]);
 
         // Menyimpan data supplayer baru
@@ -72,7 +78,7 @@ class SupplayerController extends Controller
         // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
-            'contact_person' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'address' => 'nullable|string',
         ]);

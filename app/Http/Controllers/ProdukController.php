@@ -34,30 +34,37 @@ class ProdukController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    // Validasi input
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'price' => 'required|numeric',
-        'kategori_id' => 'required|exists:kategoris,id',  // pastikan nama tabel dan kolom benar
-        'supplayer_id' => 'required|exists:supplayers,id',  // pastikan nama tabel dan kolom benar
-    ]);
+    {
+        // Validasi input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|nullable|string',
+            'price' => 'required|numeric|min:0',
+            'kategori_id' => 'required|exists:kategoris,id',  // pastikan nama tabel dan kolom benar
+            'supplayer_id' => 'required|exists:supplayers,id',  // pastikan nama tabel dan kolom benar
+        ], [
+            'name.required' => 'nama tidak boleh kosong',
 
-    // Membuat produk baru dengan hanya data yang dibutuhkan
-    $produk = new Produk();
-    $produk->name = $request->name;
-    $produk->description = $request->description;
-    $produk->price = $request->price;
-    $produk->kategori_id = $request->kategori_id;
-    $produk->supplayer_id = $request->supplayer_id;
+            'description.required' => 'deskripsi tidak boleh kosong',
 
-    // Simpan produk ke database
-    $produk->save();
+            'price.required' => 'price tidak boleh kosong',
 
-    // Redirect ke halaman index dengan pesan sukses
-    return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan.');
-}
+        ]);
+
+        // Membuat produk baru dengan hanya data yang dibutuhkan
+        $produk = new Produk();
+        $produk->name = $request->name;
+        $produk->description = $request->description;
+        $produk->price = $request->price;
+        $produk->kategori_id = $request->kategori_id;
+        $produk->supplayer_id = $request->supplayer_id;
+
+        // Simpan produk ke database
+        $produk->save();
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan.');
+    }
 
     /**
      * Display the specified resource.

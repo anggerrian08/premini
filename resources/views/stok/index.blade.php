@@ -28,8 +28,8 @@
                     <td>{{ $stok->produk->name }}</td>
                     <td>{{ $stok->quantity }}</td>
                     <td>
-                        <a href="{{ route('styok.edit', $stok->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('styok.destroy', $stok->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('stok.edit', $stok->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('stok.destroy', $stok->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>

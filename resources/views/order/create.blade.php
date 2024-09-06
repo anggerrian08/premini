@@ -25,8 +25,9 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="produk_ids" class="form-label">Produk</label>
-            <select class="form-control" id="produk_ids" name="produk_ids[]" multiple required>
+            <label for="produk_id" class="form-label">Produk</label>
+            <select class="form-control" id="produk_id" name="produk_id" required>
+                <option value="" disabled selected>Pilih Produk</option>
                 @foreach($produks as $produk)
                     <option value="{{ $produk->id }}">{{ $produk->name }}</option>
                 @endforeach
