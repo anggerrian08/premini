@@ -2,8 +2,6 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    
-    <link rel="stylesheet" href="resources/css/style.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,8 +19,9 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="{{ asset('fonts/nunito-v9-latin-600.eot') }}" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>
 
@@ -85,6 +84,8 @@
             <div class="row">
                 <!-- Sidebar -->
                 <aside class="col-md-3 bg-secondary p-3 min-vh-100 border-end">
+                    <link href="{{ asset('fonts/nunito-v9-latin-600.eot') }}" rel="stylesheet">
+
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link text-light" href="{{ url('/deskripsi') }}">{{ __('Tentang Kami') }}</a>
