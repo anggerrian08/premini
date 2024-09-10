@@ -1,57 +1,47 @@
-/* Sidebar Styles */
-.sidebar {
-    background: #626c75;
-    padding: 20px;
-    height: 100vh; /* Full height sidebar */
-    border-right: 1px solid #09345e;
-    position: fixed; /* Fixed sidebar */
-    top: 0;
-    bottom: 0;
+/* Contoh aturan CSS */
+.navbar-custom {
+    background-color: #173B45;
 }
 
-.sidebar h4 {
-    margin-bottom: 20px;
+.navbar-custom .nav-link {
+    color: #ebeadd;
+}
+
+.sidebar {
+    background-color: #403121;
+    padding: 20px;
+    min-height: 100vh;
+    border-right: 1px solid #5a595a;
+}
+
+
+/* sidebar */
+/* Sidebar styles */
+.sidebar {
+    background-color: #f3f5f7; /* Warna bg-secondary */
+    padding: 20px;
+    min-height: 100vh; /* Agar sidebar memenuhi tinggi halaman */
+    border-right: 1px solid #f5f2f5; /* Border sesuai tema */
 }
 
 .sidebar .nav-link {
-    color: #333;
-    margin-bottom: 10px;
+    color: #042647; /* Warna text-light */
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .sidebar .nav-link:hover {
-    color: #041a31;
+    background-color: #343a40; /* Warna yang lebih gelap saat hover */
+    color: #ffffff; /* Warna teks saat hover */
 }
 
-.sidebar-table {
-    margin-top: 20px;
+.sidebar .nav-item {
+    margin-bottom: 10px;
 }
 
-.sidebar-table table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.sidebar-table table th,
-.sidebar-table table td {
-    border: 1px solid #dee2e6;
-    padding: 8px;
-    text-align: left;
-}
-
-.sidebar-table table th {
-    background: #e9ecef;
-}
-
-/* Main Content Adjustments */
-.main-content {
-    margin-left: 25%; /* Adjust based on the sidebar width */
-}
-
-.container-fluid {
-    display: flex;
-}
-
-.row {
-    display: flex;
-    flex: 1;
+.sidebar .nav-link.active {
+    background-color: #495057; /* Warna saat link aktif */
+    color: #ffffff;
 }
