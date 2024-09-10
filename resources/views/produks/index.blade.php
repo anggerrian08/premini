@@ -21,8 +21,13 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+    <style>
+        .table-shadow {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 
-    <table class="table table-bordered">
+    <table class="table table-group-divider">
         <thead>
             <tr>
                 <th>Nama Menu</th>

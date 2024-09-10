@@ -14,7 +14,14 @@
         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
       </svg> Tambah Stok</a>
 
-    <table class="table table-bordered">
+
+      <style>
+        .table-shadow {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <table class="table table-group-divider">
         <thead>
             <tr>
                 <th>No</th>

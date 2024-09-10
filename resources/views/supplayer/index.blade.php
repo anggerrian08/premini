@@ -11,7 +11,13 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table table-bordered">
+    <style>
+        .table-shadow {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <table class="table table-group-divider">
         <thead>
             <tr>
                 <th>Nama</th>
@@ -21,6 +27,9 @@
                 <th>Aksi</th>
             </tr>
         </thead>
+        <!-- Isi tabel -->
+
+
         <tbody>
             @foreach($supplayers as $supplayer)
             <tr>

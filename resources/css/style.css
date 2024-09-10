@@ -1,10 +1,10 @@
 /* Contoh aturan CSS */
 .navbar-custom {
-    background-color: #173B45;
+    background-color: #12b8e6;
 }
 
 .navbar-custom .nav-link {
-    color: #ebeadd;
+    color: #2b290e;
 }
 
 .sidebar {
@@ -16,7 +16,7 @@
 
 
 /* sidebar */
-/* Sidebar styles */
+/* Sidebar styl                                es */
 .sidebar {
     background-color: #f3f5f7; /* Warna bg-secondary */
     padding: 20px;
@@ -45,3 +45,4 @@
     background-color: #495057; /* Warna saat link aktif */
     color: #ffffff;
 }
+/*  */
