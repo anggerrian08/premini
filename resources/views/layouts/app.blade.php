@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <link rel="stylesheet" href="resources/css/style.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,10 +25,11 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-black bg-secondary shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Coffeeshop
+                <a class="navbar-brand" href="#" style="font-size: 1.5rem; font-weight: bold; color: #173B45;">
+                    <style="height: 40px;">
+                    CoffeeShop
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -84,10 +86,26 @@
         </nav>
 
         <div class="container-fluid">
+            <style>
+                .sidebar {
+                    background-color: #454647;
+                    padding: 20px;
+                    border-right: 1px solid #ddd;
+                }
+
+                .sidebar .nav-link {
+                    color: #8a6e11;
+                    font-weight: bold;
+                }
+
+                .sidebar .nav-link:hover {
+                    color: #697029;
+                }
+            </style>
             <div class="row">
                 <!-- Sidebar -->
                 <aside class="col-md-3 sidebar">
-                    
+
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/deskripsi') }}">{{ __('Tentang Kami') }}</a>
@@ -95,9 +113,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/customer') }}">{{ __('Pelanggan') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/karyawan') }}">{{ __('Karyawan') }}</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/kategori') }}">{{ __('Kategori produk') }}</a>
                         </li>
@@ -112,6 +128,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/order') }}">{{ __('Order') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/karyawan') }}">{{ __('Karyawan') }}</a>
                         </li>
                     </ul>
 
