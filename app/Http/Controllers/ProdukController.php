@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
@@ -14,7 +13,6 @@ class ProdukController extends Controller
      */
     public function index(Request $request)
     {
-
         $search = $request->input('search');
 
         // Query produk dengan kondisi pencarian
@@ -33,8 +31,6 @@ class ProdukController extends Controller
             ->with(['kategori', 'supplayer']) // eager load kategori dan supplayer
             ->paginate(10);
 
-        // Mendapatkan semua produk dengan relasi ke kategori dan supplier
-        // $produks = Produk::with(['kategori', 'supplayer'])->get();
         return view('produks.index', compact('produks'));
     }
 
@@ -43,7 +39,6 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        // Mendapatkan semua kategori dan supplier untuk form
         $kategoris = Kategori::all();
         $supplayers = Supplayer::all();
         return view('produks.create', compact('kategoris', 'supplayers'));
@@ -59,44 +54,29 @@ class ProdukController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|nullable|string',
             'price' => 'required|numeric|min:0',
-            'kategori_id' => 'required|exists:kategoris,id',  // pastikan nama tabel dan kolom benar
-            'supplayer_id' => 'required|exists:supplayers,id',  // pastikan nama tabel dan kolom benar
-        ], [
-            'name.required' => 'nama tidak boleh kosong',
-
-            'description.required' => 'deskripsi tidak boleh kosong',
-
-            'price.required' => 'price tidak boleh kosong',
-
-            'kategori_id.required' => 'kategori tidak boleh kosong',
-
-            'supplayer_id.required' => 'supplayer tidak boleh kosong',
-
-
+            'kategori_id' => 'required|exists:kategoris,id',
+            'supplayer_id' => 'required|exists:supplayers,id',
+            'file' => 'nullable|mimes:jpg,png,jpeg|max:2048', // Validasi file gambar
         ]);
 
-        // Membuat produk baru dengan hanya data yang dibutuhkan
+        // Proses file upload jika ada
+        $filePath = null;
+        if ($request->hasFile('file')) {
+            $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+        }
+
+        // Membuat produk baru
         $produk = new Produk();
         $produk->name = $request->name;
         $produk->description = $request->description;
         $produk->price = $request->price;
         $produk->kategori_id = $request->kategori_id;
         $produk->supplayer_id = $request->supplayer_id;
-
-        // Simpan produk ke database
+        $produk->file_path = $filePath; // Simpan path file jika ada
         $produk->save();
 
-        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Produk $produk)
-    {
-        // Menampilkan detail produk
-        return view('produks.show', compact('produk'));
     }
 
     /**
@@ -104,11 +84,9 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
-        // Mendapatkan kategori dan supplier untuk form edit
         $kategoris = Kategori::all();
         $supplayers = Supplayer::all();
-
-        return view('produk.edit', compact('produk', 'kategoris', 'supplayers'));
+        return view('produks.edit', compact('produk', 'kategoris', 'supplayers'));
     }
 
     /**
@@ -123,12 +101,19 @@ class ProdukController extends Controller
             'price' => 'required|numeric',
             'kategori_id' => 'required|exists:kategoris,id',
             'supplayer_id' => 'required|exists:supplayers,id',
+            'file' => 'nullable|mimes:jpg,png,jpeg|max:2048', // Validasi file gambar
         ]);
 
-        // Update produk
-        $produk->update($request->all());
+        // Proses file upload jika ada
+        if ($request->hasFile('file')) {
+            $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            $produk->file_path = $filePath; // Update file path
+        }
 
-        // Redirect ke halaman index dengan pesan sukses
+        // Update produk
+        $produk->update($request->except(['file']));
+
         return redirect()->route('produk.index')->with('success', 'Produk berhasil diperbarui.');
     }
 
@@ -140,7 +125,6 @@ class ProdukController extends Controller
         // Hapus produk
         $produk->delete();
 
-        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus.');
     }
 }
