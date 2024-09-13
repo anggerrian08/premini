@@ -1,6 +1,102 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    /* General container styling */
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    /* Form styling */
+    .input-group input[type="text"] {
+        border-radius: 0.25rem;
+        border-color: #ced4da;
+        box-shadow: none;
+    }
+
+    .input-group button {
+        border-radius: 0.25rem;
+    }
+
+    /* Button styling */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border-radius: 0.25rem;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+        border-radius: 0.25rem;
+    }
+
+    .btn-info:hover {
+        background-color: #138496;
+        border-color: #117a8b;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border-color: #ffc107;
+        border-radius: 0.25rem;
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+        border-color: #d39e00;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        border-radius: 0.25rem;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    /* Card styling */
+    .card {
+        border: 1px solid #e0e0e0;
+        border-radius: 0.25rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .card-img-top {
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    .card-footer {
+        background-color: #f7f7f7;
+        border-top: 1px solid #e0e0e0;
+        padding: 0.75rem;
+    }
+
+    /* Pagination styling */
+    .pagination {
+        justify-content: center;
+    }
+
+    .pagination .page-item .page-link {
+        border-radius: 0.25rem;
+    }
+</style>
+
 <div class="container">
     <h1>Daftar Menu</h1>
 

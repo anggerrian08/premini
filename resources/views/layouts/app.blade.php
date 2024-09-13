@@ -19,7 +19,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('fonts/nunito-v9-latin-600.eot') }}" rel="stylesheet">
 
 

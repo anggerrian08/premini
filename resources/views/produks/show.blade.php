@@ -25,6 +25,10 @@
             <th>Supplier</th>
             <td>{{ $produk->supplayer->name }}</td>
         </tr>
+        <tr>
+            <th>Foto Menu</th>
+            <td>{{$produk->filePath}}</td>
+        </tr>
     </table>
 
     <a href="{{ route('produk.index') }}" class="btn btn-secondary">Kembali</a>
