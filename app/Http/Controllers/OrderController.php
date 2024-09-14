@@ -46,11 +46,8 @@ class OrderController extends Controller
             'total_price' => 'required|numeric',
         ],[
             'customer_id.required' => 'customer tidak boleh kosong',
-
             'karyawan_id.required' => 'karyawan tidak boleh kosong',
-
             'produk_ids.required' => 'produk tidak boleh kosong',
-
             'total_price.required' => 'harga tidak boleh kosong',
 
         ]);

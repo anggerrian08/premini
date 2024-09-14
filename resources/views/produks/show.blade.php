@@ -11,7 +11,7 @@
         </tr>
         <tr>
             <th>Deskripsi</th>
-            <td>{{ $produk->description }}</td>
+            <td>{{ $produk->description ?? '-'}}</td>
         </tr>
         <tr>
             <th>Harga</th>

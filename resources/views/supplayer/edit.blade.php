@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <h1>Edit Pemasok</h1>
 
     <form action="{{ route('supplayer.update', $supplayer->id) }}" method="POST">

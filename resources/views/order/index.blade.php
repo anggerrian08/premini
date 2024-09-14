@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <h1>Daftar Pesanan</h1>
 
     @if (session('success'))
@@ -13,11 +13,11 @@
     <a href="{{ route('order.create') }}" class="btn btn-primary mb-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
       </svg> Tambah Order</a>
-      <style>
+      {{-- <style>
         .table-shadow {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-    </style>
+    </style> --}}
 
     <table class="table table-group-divider">
         <thead>

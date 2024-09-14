@@ -1,0 +1,44 @@
+/* Gaya umum yang bisa digunakan di banyak halaman */
+body {
+    background-color: #f4f1ea;
+    font-family: 'Georgia', serif;
+}
+
+h1 {
+    color: #6d4c41;
+    text-align: center;
+}
+
+.card {
+    background-color: #f0e6d6;
+    border-color: #b58e6d;
+}
+
+.card-title {
+    color: #6d4c41;
+}
+
+.btn-primary {
+    background-color: #b58e6d;
+    border: none;
+}
+
+.btn-info {
+    background-color: #6d4c41;
+    border: none;
+}
+
+.btn-warning {
+    background-color: #c7a17a;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #b34a34;
+    border: none;
+}
+
+.alert-success {
+    background-color: #d9ccb7;
+    border-color: #b58e6d;
+}

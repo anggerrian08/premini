@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
@@ -25,7 +26,6 @@ class KategoriController extends Controller
         return view('kategori.create');
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
@@ -33,18 +33,22 @@ class KategoriController extends Controller
     {
         // Validasi input
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'name' => 'required|string|max:255|unique:kategoris,name',
+            'description' => 'nullable|string',
         ],[
-            'name.required' => 'nama tidak boleh kosong',
-
-            'description.required' => 'deskripsi tidak boleh kosong',
-
-
+            'name.required' => 'Nama tidak boleh kosong',
+            'name.unique'=>'Kategori yang di inputkan sudah ada',
+            'description.required' => 'Deskripsi tidak boleh kosong',
         ]);
 
+        // Isi default "-" jika description kosong
+        $data = $request->all();
+        if (empty($data['description'])) {
+            $data['description'] = '-';
+        }
+
         // Menyimpan kategori baru
-        Kategori::create($request->all());
+        Kategori::create($data);
 
         // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
@@ -73,12 +77,18 @@ class KategoriController extends Controller
     {
         // Validasi input
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:kategoris,name,'.$kategori->id,
             'description' => 'nullable|string',
         ]);
 
+        // Isi default "-" jika description kosong
+        $data = $request->all();
+        if (empty($data['description'])) {
+            $data['description'] = '-';
+        }
+
         // Update kategori
-        $kategori->update($request->all());
+        $kategori->update($data);
 
         // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diperbarui.');
@@ -89,10 +99,15 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
-        // Hapus kategori
-        $kategori->delete();
+        try {
+            // Hapus kategori
+            $kategori->delete();
 
-        // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus.');
+            // Redirect ke halaman index dengan pesan sukses
+            return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus.');
+        } catch (QueryException $e) {
+            // Tangani error, seperti ketika kategori terkait dengan produk lain
+            return redirect()->route('kategori.index')->with('error', 'Kategori tidak bisa dihapus karena terkait dengan data lain.');
+        }
     }
 }

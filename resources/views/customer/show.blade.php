@@ -2,12 +2,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Detail Customer</h1>
+<div class="container mt-5" style="background-color: #f4f1ea; padding: 20px; border-radius: 10px; border: 1px solid #d1a06d;">
+    <h1 class="text-center" style="color: #6d4c41; font-family: 'Georgia', serif;">Detail Customer</h1>
 
     <!-- Card for customer details -->
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm" style="background-color: #f0e6d6; border-color: #b58e6d;">
+            <div class="card-body">
+                <h5 class="card-title" style="color: #6d4c41; font-family: 'Georgia', serif;">
             <h5 class="card-title">Customer Details</h5>
 
             <div class="card-body">

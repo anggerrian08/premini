@@ -4,12 +4,7 @@
 <div class="container my-5">
     <!-- Hero Section -->
     <div class="hero-section text-center position-relative">
-        {{-- Gambar Hero (Tambahkan path gambar di sini) --}}
-        {{-- <img src="path-to-your-image/coffee-shop-hero.jpg" alt="Coffee Shop" class="img-fluid w-100" style="max-height: 500px; object-fit: cover;"> --}}
-        {{-- <div class="hero-text position-absolute top-50 start-50 translate-middle text-white"> --}}
-            {{-- <h3 class="display-4">Selamat Datang di Coffee Shop Kami</h3> --}}
-            {{-- <h1 class="display-5">Nikmati kopi terbaik dengan suasana yang nyaman</h1> --}}
-            <a href="#our-menu" class="btn btn-primary mt-4">
+         <a href="#our-menu" class="btn btn-primary mt-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                 </svg>
@@ -18,11 +13,7 @@
         {{-- </div> --}}
     </div>
 
-    <!-- About Us Section -->
-    {{-- <section class="about-us-section text-center my-5">
-        <h2 class="mb-4">Tentang Kami</h2>
-        <p class="lead">Kami menyajikan kopi berkualitas dari biji kopi pilihan, dengan pelayanan ramah di tempat yang nyaman. Datang dan nikmati secangkir kopi terbaik dari barista kami.</p>
-    </section> --}}
+
 
     <!-- Menu Section -->
     <section id="our-menu" class="menu-section my-5">

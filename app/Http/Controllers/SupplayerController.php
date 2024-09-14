@@ -30,20 +30,25 @@ class SupplayerController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
-            'address' => 'nullable|string',
-        ], [
-            'name.required' => 'nama tidak boleh kosong',
+{
+    // Validasi input
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:customers,email', // Tambahkan aturan unik untuk email
+        'phone' => 'required|string|max:20|unique:customers,phone', // Tambahkan aturan unik untuk phone
+        'address' => 'nullable|string',
+    ], [
+        'name.required' => 'nama tidak boleh kosong',
+        'email.required' => 'kontak tidak boleh kosong',
+        'email.unique' => 'email sudah terdaftar', // Pesan error untuk email unik
+        'phone.required' => 'telepon tidak boleh kosong',
+        'phone.unique' => 'telepon sudah terdaftar', // Pesan error untuk telepon unik
+    ]);
 
-            'email.required' => 'kontak tidak boleh kosong',
+    // Simpan data ke database
+    // ...
 
-            'telepon.required' => 'telepon tidak boleh kosong',
-        ]);
+
 
         // Menyimpan data supplayer baru
         Supplayer::create($request->all());
@@ -78,9 +83,15 @@ class SupplayerController extends Controller
         // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
+            'email' => 'required|string|email|max:255|unique:customers,email', // Tambahkan aturan unik untuk email
+            'phone' => 'required|string|max:20|unique:customers,phone', // Tambahkan aturan unik untuk phone
             'address' => 'nullable|string',
+        ], [
+            'name.required' => 'nama tidak boleh kosong',
+            'email.required' => 'kontak tidak boleh kosong',
+            'email.unique' => 'email sudah terdaftar', // Pesan error untuk email unik
+            'phone.required' => 'telepon tidak boleh kosong',
+            'phone.unique' => 'telepon sudah terdaftar', // Pesan error untuk telepon unik
         ]);
 
         // Update data supplayer

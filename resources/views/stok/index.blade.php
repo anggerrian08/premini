@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <h1>Daftar Stok</h1>
 
     @if (session('success'))
@@ -21,7 +21,7 @@
         }
     </style>
 
-    <table class="table table-group-divider">
+    <table class="table table-group-divider table-shadow">
         <thead>
             <tr>
                 <th>No</th>

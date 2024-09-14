@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <h1>Tambah Karyawan Baru</h1>
 
     <form action="{{ route('karyawan.store') }}" method="POST">
@@ -41,7 +41,7 @@
                 <option value="Manager" {{ old('position') == 'Manager' ? 'selected' : '' }}>Manager</option>
                 <option value="Supervisor" {{ old('position') == 'Supervisor' ? 'selected' : '' }}>Supervisor</option>
                 <option value="Staff" {{ old('position') == 'Staff' ? 'selected' : '' }}>Staff</option>
-            
+
             </select>
             @error('position')
                 <div class="invalid-feedback">

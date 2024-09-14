@@ -18,7 +18,7 @@ class Produk extends Model
 
     public function stok()
     {
-        return $this->hasOne(Stok::class);
+        return $this->hasOne(Stok::class,'name');
     }
 
     public function orders()

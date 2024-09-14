@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Edit Customer</h1>
+<div class="container mt-5" style="background-color: #f4f1ea; padding: 20px; border-radius: 10px; border: 1px solid #d1a06d;">
+    <h1 class="text-center" style="color: #6d4c41; font-family: 'Georgia', serif;"Edit Customer</h1>
 
     <form action="{{ route('customer.update', $customer->id) }}" method="POST">
         @csrf

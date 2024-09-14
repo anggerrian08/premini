@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
+{{-- <style>
     /* General container styling */
     .container {
         max-width: 1200px;
@@ -95,9 +95,9 @@
     .pagination .page-item .page-link {
         border-radius: 0.25rem;
     }
-</style>
+</style> --}}
 
-<div class="container">
+<div class="container mt-5">
     <h1>Daftar Menu</h1>
 
     <!-- Form Pencarian -->
