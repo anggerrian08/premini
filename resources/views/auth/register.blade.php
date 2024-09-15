@@ -26,7 +26,7 @@
                     <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
 
                         <div class="card card-primary">
-                            <div class="card-header">
+                            <div class="card-header text-center">
                                 <h4>Daftar</h4>
                             </div>
 
@@ -69,15 +69,16 @@
                                         <button type="submit" class="btn btn-primary btn-lg btn-block">
                                             Daftar
                                         </button>
+                                        <div class="mt-5 text-muted text-center">
+                            Sudah memiliki akun? <a href="{{ route('login') }}">Login</a>
+                        </div>
                                     </div>
                                 </form>
 
                             </div>
                         </div>
 
-                        <div class="mt-5 text-muted text-center">
-                            Sudah memiliki akun? <a href="{{ route('login') }}">Login</a>
-                        </div>
+
                     </div>
                 </div>
             </div>

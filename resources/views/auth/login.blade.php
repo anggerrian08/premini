@@ -16,14 +16,30 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
+
+    <!-- Custom CSS to center the card -->
+    <style>
+        .centered-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure the card is vertically centered */
+        }
+
+        .card-primary {
+            width: 100%;
+            max-width: 400px; /* Limit the card width */
+            margin-top: 50px; /* Adjust the spacing from the top */
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
         <section class="section">
-            <div class="container">
+            <div class="container centered-card">
                 <div class="card card-primary">
-                    <div class="card-header">
+                    <div class="card-header text-center">
                         <h4>Masuk</h4>
                     </div>
                     <div class="card-body">
@@ -52,12 +68,14 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Masuk</button>
+                                <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                             </div>
                         </form>
                     </div>
+                    <div class="card-footer text-muted text-center">
+                        Belum punya akun? <a href="register">Buat akun</a>
+                    </div>
                 </div>
-                <div class="text-muted">Belum punya akun? <a href="register">Buat akun</a></div>
             </div>
         </section>
     </div>
