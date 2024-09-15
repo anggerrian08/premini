@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5" style="background-color: #f4f1ea; padding: 20px; border-radius: 10px; border: 1px solid #d1a06d;">
-    <h1 class="text-center" style="color: #6d4c41; font-family: 'Georgia', serif;">Tambah Customer Baru</h1>
+    <h1 class="text-center" style="color: #6d4c41; font-family: 'Georgia', serif;">Tambah Pelanggan Baru</h1>
 
     <form action="{{ route('customer.store') }}" method="POST">
         @csrf
