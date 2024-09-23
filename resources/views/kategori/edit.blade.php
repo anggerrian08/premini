@@ -26,7 +26,7 @@
 
         <div class="form-group">
             <label for="description">Deskripsi</label>
-            <textarea class="form-control" id="description" name="description">{{ old('description', $kategori->description) }}"></textarea>
+            <textarea class="form-control" id="description" name="description">{{ old('description', $kategori->description) }}</textarea>
             <tr>(opsional)</tr>
         </div>
 

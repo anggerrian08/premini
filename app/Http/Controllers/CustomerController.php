@@ -40,6 +40,8 @@ class CustomerController extends Controller
             'name.required' => 'nama tidak boleh kosong',
 
             'email.required' => 'email tidak boleh kosong',
+            'email.email' => 'email tidak boleh kosong',
+            'email.unique' => 'email tidak boleh sama',
 
             'phone.required' => 'nomer telepon tidak boleh kosong',
 
@@ -86,6 +88,8 @@ class CustomerController extends Controller
             'name.required' => 'nama tidak boleh kosong',
 
             'email.required' => 'email tidak boleh kosong',
+            'email.email' => 'email tidak boleh kosong',
+            'email.unique' => 'email tidak boleh sama',
 
             'phone.required' => 'nomer telepon tidak boleh kosong',
 

@@ -18,6 +18,12 @@ class CreateStoksTable extends Migration
             $table->unsignedBigInteger('produk_id');
             $table->string('quantity');
             $table->timestamps();
+
+            // Set foreign key constraint with onDelete('restrict')
+            $table->foreign('produk_id')
+                  ->references('id')
+                  ->on('produks')
+                  ->onDelete('restrict'); // Apply restrict on delete action
         });
     }
 
@@ -28,6 +34,6 @@ class CreateStoksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategori');
+        Schema::dropIfExists('stoks');
     }
 }

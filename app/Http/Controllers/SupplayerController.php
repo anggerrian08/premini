@@ -106,10 +106,15 @@ class SupplayerController extends Controller
      */
     public function destroy(Supplayer $supplayer)
     {
-        // Menghapus data supplayer
-        $supplayer->delete();
+        try {
+            // Menghapus data supplayer
+            $supplayer->delete();
 
-        // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('supplayer.index')->with('success', 'Supplayer berhasil dihapus.');
+            // Redirect ke halaman index dengan pesan sukses
+            return redirect()->route('supplayer.index')->with('success', 'Supplayer berhasil dihapus.');
+        } catch (\Exception $e) {
+            // Menangkap error dan menampilkan pesan gagal
+            return redirect()->route('supplayer.index')->with('success', 'data ini masih di pakai');
+        }
     }
 }

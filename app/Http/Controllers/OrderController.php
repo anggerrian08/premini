@@ -37,26 +37,25 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
+        // Validasi input termasuk quantity
         $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'karyawan_id' => 'required|exists:karyawans,id',
-            'produk_id' => 'required|',
-            'produk_ids.*' => 'required|exists:produks,id',
+            'produk_ids' => 'required|array',
+            'produk_ids.*' => 'exists:produks,id',
+            'quantities' => 'required|array',
+            'quantities.*' => 'required|integer|min:1',
             'total_price' => 'required|numeric',
-        ],[
-            'customer_id.required' => 'customer tidak boleh kosong',
-            'karyawan_id.required' => 'karyawan tidak boleh kosong',
-            'produk_ids.required' => 'produk tidak boleh kosong',
-            'total_price.required' => 'harga tidak boleh kosong',
-
+            'quantity' => 'required|integer|min:1',
         ]);
 
         // Membuat order baru
-        $order = Order::create($request->only(['customer_id', 'karyawan_id', 'total_price', 'status']));
+        $order = Order::create($request->only(['customer_id', 'karyawan_id', 'total_price', 'quantity']));
 
-        // Menyimpan produk yang dipilih ke dalam tabel pivot 'order_items'
-        $order->produk()->attach($request->produk_ids);
+        // Menyimpan produk dan kuantitas ke dalam tabel pivot 'order_items'
+        foreach ($request->produk_ids as $key => $produk_id) {
+            $order->produk()->attach($produk_id, ['quantity' => $request->quantities[$key]]);
+        }
 
         // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('order.index')->with('success', 'Order berhasil ditambahkan.');
