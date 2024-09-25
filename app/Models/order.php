@@ -9,23 +9,22 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_id', 'karyawan_id', 'total_price'];
+    protected $guarded = ['id'];
 
-    public function customer()
+    public function customers()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
-    public function karyawan()
+    public function karyawans()
     {
-        return $this->belongsTo(Karyawan::class);
+        return $this->belongsTo(Karyawan::class, 'karyawan_id');
     }
 
     // Relasi many-to-many antara Order dan Produk melalui tabel pivot order_items
-    public function produk()
+    public function produks()
     {
-        return $this->belongsToMany(Produk::class, 'order_items')
-                    ->withPivot('quantity'); // Menggunakan pivot untuk menyimpan quantity produk
-    }
+       return $this->belongsTo(Produk::class, 'produk_id');
 }
 
+}

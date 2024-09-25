@@ -80,8 +80,18 @@ class KaryawanController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:karyawans,email,' . $karyawan->id,
-            'phone' => 'nullable|string|max:20',
+            'phone' => 'required|string|max:20',
             'position' => 'required|string|max:255',
+        ],[
+            'name.required' => 'nama tidak boleh kosong',
+
+            'email.required' => 'email tidak boleh kosong',
+
+            'phone.required' => 'nomer telepon tidak boleh kosong',
+
+            'position.required' => 'jabatan tidak boleh kosong',
+
+
         ]);
 
         // Update data karyawan

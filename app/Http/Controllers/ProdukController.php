@@ -57,6 +57,16 @@ class ProdukController extends Controller
             'kategori_id' => 'required|exists:kategoris,id',
             'supplayer_id' => 'required|exists:supplayers,id',
             'file' => 'nullable|mimes:jpg,png,jpeg|max:2048', // Validasi file gambar
+        ],[
+            'name.required' => 'nama tidak boleh kosong',
+
+            'description.required' => 'deskripsi tidak boleh kosong',
+
+            'price.required' => 'harga tidak boleh kosong',
+
+            'kategoti_id.required' => 'kategori tidak boleh kosong',
+
+            'supplayer_id.required' => 'supplayer tidak boleh kosong'
         ]);
 
         // Proses file upload jika ada

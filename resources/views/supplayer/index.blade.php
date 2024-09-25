@@ -25,7 +25,7 @@
                             <p class="card-text"><strong>Telepon:</strong> {{ $supplayer->phone }}</p>
                             <p class="card-text"><strong>Alamat:</strong> {{ $supplayer->address }}</p>
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('supplayer.show', $supplayer->id) }}" class="btn btn-info">
+                                {{-- <a href="{{ route('supplayer.show', $supplayer->id) }}" class="btn btn-info">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                         <path
@@ -33,7 +33,7 @@
                                         <path
                                             d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
                                     </svg>
-                                </a>
+                                </a> --}}
                                 <a href="{{ route('supplayer.edit', $supplayer->id) }}" class="btn btn-warning">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

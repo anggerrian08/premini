@@ -34,15 +34,15 @@ class SupplayerController extends Controller
     // Validasi input
     $request->validate([
         'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:customers,email', // Tambahkan aturan unik untuk email
-        'phone' => 'required|string|max:20|unique:customers,phone', // Tambahkan aturan unik untuk phone
+        'email' => 'required|string|email|max:255|unique:supplayers,email', // Tambahkan aturan unik untuk email
+        'phone' => 'required|string|max:20|unique:supplayers,phone', // Tambahkan aturan unik untuk phone
         'address' => 'nullable|string',
     ], [
         'name.required' => 'nama tidak boleh kosong',
         'email.required' => 'kontak tidak boleh kosong',
-        'email.unique' => 'email sudah terdaftar', // Pesan error untuk email unik
+        'email.unique' => 'email sudah terdaftar',
         'phone.required' => 'telepon tidak boleh kosong',
-        'phone.unique' => 'telepon sudah terdaftar', // Pesan error untuk telepon unik
+        'phone.unique' => 'telepon sudah terdaftar',
     ]);
 
     // Simpan data ke database
@@ -83,8 +83,8 @@ class SupplayerController extends Controller
         // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:customers,email', // Tambahkan aturan unik untuk email
-            'phone' => 'required|string|max:20|unique:customers,phone', // Tambahkan aturan unik untuk phone
+            'email' => 'required|string|email|max:255|unique:supplayers,email', // Tambahkan aturan unik untuk email
+            'phone' => 'required|string|max:20|unique:supplayers,phone', // Tambahkan aturan unik untuk phone
             'address' => 'nullable|string',
         ], [
             'name.required' => 'nama tidak boleh kosong',

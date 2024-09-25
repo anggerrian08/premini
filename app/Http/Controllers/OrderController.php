@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Karyawan;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -15,8 +16,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // Mendapatkan semua order
-        $orders = Order::with(['customer', 'karyawan'])->get();
+        // Mendapatkan semua order dengan relasi ke customer, karyawan, dan produk
+        $orders = Order::with(['customers', 'karyawans', 'produks'])->get();
         return view('order.index', compact('orders'));
     }
 
@@ -41,21 +42,13 @@ class OrderController extends Controller
         $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'karyawan_id' => 'required|exists:karyawans,id',
-            'produk_ids' => 'required|array',
-            'produk_ids.*' => 'exists:produks,id',
-            'quantities' => 'required|array',
-            'quantities.*' => 'required|integer|min:1',
-            'total_price' => 'required|numeric',
-            'quantity' => 'required|integer|min:1',
+            'produk_id.*' => 'required|exists:produks,id',
+            'quantity' => 'required',
+            'total_price' => 'required',
         ]);
 
         // Membuat order baru
-        $order = Order::create($request->only(['customer_id', 'karyawan_id', 'total_price', 'quantity']));
-
-        // Menyimpan produk dan kuantitas ke dalam tabel pivot 'order_items'
-        foreach ($request->produk_ids as $key => $produk_id) {
-            $order->produk()->attach($produk_id, ['quantity' => $request->quantities[$key]]);
-        }
+        $order = Order::create($request->only(['customer_id', 'karyawan_id','produk_id','quantity','total_price']));
 
         // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('order.index')->with('success', 'Order berhasil ditambahkan.');
@@ -67,10 +60,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         // Menampilkan detail order dengan relasi ke customer, karyawan, dan produk
-        $customers = Customer::all();
-        $karyawans = Karyawan::all();
-        $produks = Produk::all();
-        return view('order.show', compact('order','customers', 'karyawans', 'produks'));
+        return view('order.show', compact('order'));
     }
 
     /**
@@ -84,33 +74,28 @@ class OrderController extends Controller
         $produks = Produk::all();
 
         // Menampilkan form edit order
-        return view('order.edit', compact( 'order','customers', 'karyawans', 'produks'));
+        return view('order.edit', compact('order', 'customers', 'karyawans', 'produks'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Order $order)
-{
+    {
+        $request->validate([
+            'customer_id' => 'required|exists:customers,id',
+            'karyawan_id' => 'required|exists:karyawans,id',
+            'produk_id.*' => 'required|exists:produks,id',
+            'quantity' => 'required',
+            'total_price' => 'required',
+        ]);
 
-    // Validasi input
-    $request->validate([
-        'customer_id' => 'required|exists:customers,id',
-        'karyawan_id' => 'required|exists:karyawans,id',
-        'total_price' => 'required|numeric',
+        // Update order
+        $order->update($request->only(['customer_id', 'karyawan_id','produk_id','quantity','total_price']));
 
-        // Tambahkan 'status' jika Anda menyertakan kolom status
-        // 'status' => 'required|string|max:255',
-    ]);
-
-
-    // Update order
-    $order->update($request->only(['customer_id', 'karyawan_id', 'total_price']));
-
-
-    // Redirect ke halaman index dengan pesan sukses
-    return redirect()->route('order.index')->with('success', 'Order berhasil diperbarui.');
-}
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('order.index')->with('success', 'Order berhasil diperbarui.');
+    }
 
     /**
      * Remove the specified resource from storage.

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,13 +26,12 @@ class Produk extends Model
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'order_items')
-                    ->withPivot('quantity'); // Menggunakan pivot untuk menyimpan quantity produk
+            ->withPivot('quantity'); // Menggunakan pivot untuk menyimpan quantity produk
     }
 
-    // Relasi ke tabel supplier
+    // Relasi ke tabel supplier (perbaikan penamaan)
     public function supplayer()
     {
         return $this->belongsTo(Supplayer::class);
     }
 }
-

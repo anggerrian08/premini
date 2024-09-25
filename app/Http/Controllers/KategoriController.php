@@ -37,7 +37,9 @@ class KategoriController extends Controller
             'description' => 'nullable|string',
         ],[
             'name.required' => 'Nama tidak boleh kosong',
+
             'name.unique'=>'Kategori yang di inputkan sudah ada',
+            
             'description.required' => 'Deskripsi tidak boleh kosong',
         ]);
 

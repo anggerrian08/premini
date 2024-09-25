@@ -18,6 +18,17 @@
     @viteReactRefresh
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+    <style>
+        .nav-link.active {
+            background-color: #57330b;
+            /* Warna background saat aktif */
+            color: #fff;
+            /* Warna teks saat aktif */
+            border-radius: 5px;
+            /* Opsional: untuk memberikan efek rounding pada sudut */
+        }
+    </style>
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
@@ -31,8 +42,9 @@
                 <a class="navbar-brand" href="/home">
                     Coffee<span class="shop-highlight">Shop</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -56,8 +68,9 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle custom-link" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle custom-link" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -82,42 +95,43 @@
         <aside class="custom-sidebar">
             <ul class="nav flex-column">
                 <li class="nav-item mb-3">
-                    <a class="nav-link" href="{{ url('/customer') }}">
+                    <a class="nav-link {{ Request::is('customer') ? 'active' : '' }}" href="{{ url('/customer') }}">
                         <i class="bi bi-people-fill me-2"></i>{{ __('Pelanggan') }}
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link" href="{{ url('/kategori') }}">
+                    <a class="nav-link {{ Request::is('kategori') ? 'active' : '' }}" href="{{ url('/kategori') }}">
                         <i class="bi bi-tags-fill me-2"></i>{{ __('Kategori Produk') }}
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link" href="{{ url('/supplayer') }}">
+                    <a class="nav-link {{ Request::is('supplayer') ? 'active' : '' }}" href="{{ url('/supplayer') }}">
                         <i class="bi bi-truck me-2"></i>{{ __('Supplayer') }}
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link" href="{{ url('/produk') }}">
+                    <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" href="{{ url('/produk') }}">
                         <i class="bi bi-cup-fill me-2"></i>{{ __('Menu') }}
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link" href="{{ url('/stok') }}">
+                    <a class="nav-link {{ Request::is('stok') ? 'active' : '' }}" href="{{ url('/stok') }}">
                         <i class="bi bi-box-seam me-2"></i>{{ __('Stok') }}
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link" href="{{ url('/order') }}">
-                        <i class="bi bi-cart-fill me-2"></i>{{ __('Order') }}
+                    <a class="nav-link {{ Request::is('karyawan') ? 'active' : '' }}" href="{{ url('/karyawan') }}">
+                        <i class="bi bi-person-badge-fill me-2"></i>{{ __('Karyawan') }}
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link" href="{{ url('/karyawan') }}">
-                        <i class="bi bi-person-badge-fill me-2"></i>{{ __('Karyawan') }}
+                    <a class="nav-link {{ Request::is('order') ? 'active' : '' }}" href="{{ url('/order') }}">
+                        <i class="bi bi-cart-fill me-2"></i>{{ __('Order') }}
                     </a>
                 </li>
             </ul>
         </aside>
+
 
         <!-- Main Content -->
         <main class="main-content">
@@ -157,7 +171,8 @@
             background-color: #af8d66;
             color: #f1e0cc;
             position: fixed;
-            top: 70px; /* Adjusted for fixed navbar height */
+            top: 70px;
+            /* Adjusted for fixed navbar height */
             left: 0;
             width: 250px;
             height: 100%;
@@ -182,13 +197,18 @@
 
         /* Main Content Styling */
         .main-content {
-            margin-left: 250px; /* To make room for the sidebar */
-            padding: 80px 20px 20px 20px; /* Added padding at top to make space for fixed navbar */
+            margin-left: 250px;
+            /* To make room for the sidebar */
+            padding: 80px 20px 20px 20px;
+            /* Added padding at top to make space for fixed navbar */
             background-color: #fdf5e6;
         }
 
         /* Typography */
-        h1, h2, h3, p {
+        h1,
+        h2,
+        h3,
+        p {
             color: #4e342e;
         }
     </style>
