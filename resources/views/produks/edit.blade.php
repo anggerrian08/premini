@@ -20,6 +20,10 @@
                     <textarea class="form-control" name="description">{{ $produk->description }}</textarea>
                 </div>
                 <div class="mb-3">
+                    <label for="quantity" class="form-label">Kuantitas</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" value="{{ $produk->quantity }}" required>
+                </div>
+                <div class="mb-3">
                     <label for="price" class="form-label">Harga</label>
                     <input type="number" class="form-control" id="price" name="price" value="{{ $produk->price }}" required>
                 </div>

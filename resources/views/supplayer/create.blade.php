@@ -3,9 +3,8 @@
 @section('content')
 <div class="container mt-5">
     <h1>Tambah Pemasok</h1>
-
-    <!-- Menampilkan Error Validasi -->
-    {{-- @if ($errors->any())
+    
+    @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -13,7 +12,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif --}}
+    @endif
 
     <form action="{{ route('supplayer.store') }}" method="POST">
         @csrf

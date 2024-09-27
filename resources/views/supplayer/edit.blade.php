@@ -4,6 +4,12 @@
 <div class="container mt-5">
     <h1>Edit Pemasok</h1>
 
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <form action="{{ route('supplayer.update', $supplayer->id) }}" method="POST">
         @csrf
         @method('PUT')

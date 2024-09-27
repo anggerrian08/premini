@@ -1,4 +1,4 @@
-/* Gaya umum yang bisa digunakan di banyak halaman */
+
 body {
     background-color: #f4f1ea;
     font-family: 'Georgia', serif;
@@ -41,4 +41,18 @@ h1 {
 .alert-success {
     background-color: #d9ccb7;
     border-color: #b58e6d;
+}
+
+.box-shadow{
+   color: aqua;
+}
+.table-shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card-shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    top: 0;
+    bottom: 0;
 }

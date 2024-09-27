@@ -115,11 +115,6 @@
                     </a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a class="nav-link {{ Request::is('stok') ? 'active' : '' }}" href="{{ url('/stok') }}">
-                        <i class="bi bi-box-seam me-2"></i>{{ __('Stok') }}
-                    </a>
-                </li>
-                <li class="nav-item mb-3">
                     <a class="nav-link {{ Request::is('karyawan') ? 'active' : '' }}" href="{{ url('/karyawan') }}">
                         <i class="bi bi-person-badge-fill me-2"></i>{{ __('Karyawan') }}
                     </a>
