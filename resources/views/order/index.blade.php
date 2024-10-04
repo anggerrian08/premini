@@ -3,7 +3,8 @@
 @section('content')
     <div class="container">
         <h1>Daftar Order</h1>
-
+        
+        <a href="{{ route('order.create') }}" class="btn btn-primary">Tambah Order Baru</a>
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -31,9 +32,9 @@
                         <td>{{ $order->produks->name  }}</td>
                         <td>{{ $order->quantity }}</td>
                         <td>{{ number_format($order->total_price, 2, ',', '.') }}</td>
-                        {{-- <td>{{ $order->produk->price }}</td> --}}
+
                         <td>
-                            {{-- <a href="{{ route('order.show', $order) }}" class="btn btn-info">Lihat</a> --}}
+
                             <a href="{{ route('order.edit', $order) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('order.destroy', $order) }}" method="POST" style="display:inline;">
                                 @csrf
@@ -47,6 +48,5 @@
             </tbody>
         </table>
 
-        <a href="{{ route('order.create') }}" class="btn btn-primary">Tambah Order Baru</a>
-    </div>
+        </div>
 @endsection
